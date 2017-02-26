@@ -7,5 +7,10 @@ config.read('server_settings.ini')
 env.hosts = [config.get('env', 'hosts')]
 env.user  = config.get('env', 'user')
 
-def host_type():
-    run('uname -s')
+def gitpull():
+    with cd("/home/ubuntu/okapi"):
+        run('git pull')
+
+def collectstatic():
+    with cd("/home/ubuntu/okapi"):
+        run('python manage.py collectstatic')
