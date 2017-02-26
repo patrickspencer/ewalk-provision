@@ -1,7 +1,11 @@
-import fabric
+from fabric.api import *
+import configparser
+
+config = configparser.RawConfigParser()
+config.read('server_settings.ini')
+
+env.hosts = [config.get('env', 'hosts')]
+env.user  = config.get('env', 'user')
 
 def host_type():
-    print(fabric.api.run('uname -s'))
-
-def hello():
-    print("Hello world!")
+    run('uname -s')
